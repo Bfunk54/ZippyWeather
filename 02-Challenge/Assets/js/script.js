@@ -95,13 +95,22 @@ function renderSearchHistory() {
   
   // Fetches weather data for given location from the Weather Geolocation
   // endpoint; then, calls functions to display current and forecast weather data.
-  function fetchWeather(location) {
+  async function fetchWeather(location) {
     // varialbles of longitude, latitude, city name - coming from location
-  
+    let long = location.coord.lon;
+    let lat = location.coord.lat;
+    let name = location.name;
+    console.log('longitude is: ' + long);
+    console.log('latitude is: ' + lat);
+    console.log('name is: ' + name);
     // api url
-  
+    let apiKey = 'cc89612e36b533aff0217169aedace13';
+    let apiURL = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + long + '&appid=' + apiKey;
     // fetch, using the api url, .then that returns the response as json, .then that calls renderItems(city, data)
-  
+        const response = await fetch(apiURL);
+        const data = await response.json();
+        console.log(data);
+        renderItems(name, data);
   }
   
   async function fetchCoords(search) {
@@ -109,9 +118,10 @@ function renderSearchHistory() {
     const weathUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + search + '&appid=cc89612e36b533aff0217169aedace13'
         const response = await fetch(weathUrl);
         const data = await response.json();
-        console.log(data);  
+        console.log(data);
     // fetch with your url, .then that returns the response in json, .then that does 2 things - calls appendToHistory(search), calls fetchWeather(the data)
-  
+        appendToHistory(search)
+        fetchWeather(data)
   }
   
   function handleSearchFormSubmit(searchInput) {
