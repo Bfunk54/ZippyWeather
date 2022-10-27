@@ -1,0 +1,38 @@
+/* .searchForm {
+    display: flex;
+    justify-content: left;
+    margin-left: 0;
+} */
+.actualForm {
+
+}
+
+.searchTitle {
+    padding-left: 10px;
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+.row {
+    margin: 5px;
+}
+
+.currentCity {
+    display: flex;
+    justify-content: left;
+    margin-left: 0;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.cityName {
+    display: flex;
+    justify-content: left;
+    margin-left: 0;
+}
+
+.container {
+    margin: 0;
+}
