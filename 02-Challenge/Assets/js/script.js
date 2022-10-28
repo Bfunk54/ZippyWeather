@@ -11,6 +11,7 @@ const todaysWeather = document.getElementById('todaysWeather');
 const fiveDayForecast = document.getElementById('5dayForecast');
 const searchHistory = document.getElementById('searchHistory');
 const searchButton = document.getElementById('searchButton');
+const cityName = document.getElementById('theNewCity');
 // search form
 // search input
 // container/section for today's weather
@@ -48,14 +49,31 @@ function renderSearchHistory() {
   function renderCurrentWeather(city, weather) {
     // Store response data from our fetch request in variables
       // temperature, wind speed, etc.
+      console.log(weather);
+
+      let temp = weather.main.temp;
+      let windSpeed = weather.wind.speed;
+      let humidity = weather.main.humidity;
+      console.log(temp, windSpeed, humidity);
   
   
     // document.create the elements you'll want to put this information in  
+      let dataUl = document.createElement('ul');
   
     // append those elements somewhere
+      dataUl.innerHTML += '<li> Temperature: ' + temp + '</li>';
+      dataUl.innerHTML += '<li> Wind Speed: ' + windSpeed + '</li>'
+      dataUl.innerHTML += '<li> Humidity: ' + humidity + '</li>';
   
     // give them their appropriate content
-  
+      console.log(todaysWeather);
+      todaysWeather.appendChild(dataUl);
+      // let theCity = JSON.stringify(city);
+      console.log(city);
+      // city.innerHTML;
+      //Clear the last city and create a text node with the city name and put that on the page
+      cityName.innerHTML = '';
+      cityName.appendChild(document.createTextNode(city));
   }
   
   // Function to display a FORECAST card given an object (from our renderForecast function) from open weather api
@@ -90,6 +108,7 @@ function renderSearchHistory() {
   
   function renderItems(city, data) {
     renderCurrentWeather(city, data.list[0]);
+    console.log(city, data.list);
     renderForecast(data.list);
   }
   
@@ -109,7 +128,7 @@ function renderSearchHistory() {
     // fetch, using the api url, .then that returns the response as json, .then that calls renderItems(city, data)
         const response = await fetch(apiURL);
         const data = await response.json();
-        console.log(data);
+        console.log(name, data);
         renderItems(name, data);
   }
   
