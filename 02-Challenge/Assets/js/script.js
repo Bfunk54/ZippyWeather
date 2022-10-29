@@ -110,6 +110,18 @@ function renderSearchHistory() {
       // console.log(humidity);
       }
     // Create elements for a card
+    
+    for (var i = 0; i < 5; i++){
+      let cardDiv = document.createElement('div');
+      let cardUl = document.createElement('ul');
+      let humidityLi = document.createElement('li');
+      let windSpeedLi = document.createElement('li');
+      let tempLi = document.createElement('li');
+      humidityLi.appendChild(humidityArr[i]);
+      cardUl.appendChild(humidityLi);
+      cardDiv.appendChild(cardUl);
+      
+    }
   
     // append
   
