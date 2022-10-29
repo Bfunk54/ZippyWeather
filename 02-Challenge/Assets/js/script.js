@@ -79,9 +79,24 @@ function renderSearchHistory() {
   // Function to display a FORECAST card given an object (from our renderForecast function) from open weather api
   // daily forecast.
   function renderForecastCard(forecast) {
+    // Parse data back into json to make it easier to grab data points
+    // let forecastObjs = [];
+    // for (var i = 0; i < 5; i++) {
+    //   let dayData = JSON.parse(forecast[i]);
+    //   forecastObjs += dayData;
+    // }
+    // console.log(forecastObjs);
     // variables for data from api
       // temp, windspeed, etc.
-  
+      for (var i = 0; i < 5; i++){
+      let temp = [];
+      temp += forecast[i].main.temp;
+      // let windSpeed = 
+      // forecast[i].wind;
+      let humidity = [];
+      humidity += forecast[i].humidity;
+      console.log(temp);
+      }
     // Create elements for a card
   
     // append
@@ -98,19 +113,14 @@ function renderSearchHistory() {
   let fiveDayArr = [];
   // Get data for 5 day forecast, turn each day into strings and put in the array
   for (var i = 0; i < 5; i++) {
-    let dayData = JSON.stringify(dailyForecast[i]);
-    fiveDayArr += dayData;
+    console.log(dailyForecast[i]);
+    fiveDayArr.push(dailyForecast[i]);
     console.log(fiveDayArr);
   }
   
-  // loop over dailyForecast
-  
-    for (var i = 0; i < dailyForecast.length; i++) {
-  
-      // send the data to our renderForecast function as an argument
-          renderForecastCard(dailyForecast[i]);
+      // send the data to our renderForecast function an array
+          renderForecastCard(fiveDayArr);
     }
-  }
   
   function renderItems(city, data) {
     renderCurrentWeather(city, data.list[0]);
