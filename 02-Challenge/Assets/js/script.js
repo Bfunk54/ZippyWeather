@@ -20,26 +20,38 @@ const cityName = document.getElementById('theNewCity');
 
 
 // Function to display the search history list.
-function renderSearchHistory() {
+function renderSearchHistory(search) {
     // empty the search history container\
     searchHistory.innerHTML = '';
-  
     // loop through the history array creating a button for each item
-  
+    for (var i = 0; i < searchArr.length; i++){
+      let historyButton = document.createElement('button');
+      
+    
+    }
       // append to the search history container
   }
   
+    let searchArr = [];
+
   // Function to update history in local storage then updates displayed history.
   function appendToHistory(search) {
     // push search term into search history array
-  
+    console.log(search);
+    let newSearch = JSON.stringify(search);
+    console.log(search);
     // set search history array to local storage
-    renderSearchHistory();
+    localStorage.setItem('searchHistory', search)
+    initSearchHistory();
   }
   
   // Function to get search history from local storage
   function initSearchHistory() {
      // get search history item from local storage
+     let historyStr = localStorage.getItem('searchHistory');
+     console.log(historyStr);
+     searchArr.push(historyStr);
+     console.log(searchArr);
   
     // set search history array equal to what you got from local storage
     renderSearchHistory();
@@ -120,6 +132,8 @@ function renderSearchHistory() {
       let humidityNode = document.createTextNode('Humidity: ' + humidityArr[i] + '%');
       let windSpeedNode = document.createTextNode('Wind Speed: ' + windSpeedArr[i] + ' MPH');
       let tempNode = document.createTextNode('Temperature: ' + tempArr[i] + '°F');
+
+      // append all the elements
       humidityLi.appendChild(humidityNode);
       windSpeedLi.appendChild(windSpeedNode);
       tempLi.appendChild(tempNode);
@@ -127,14 +141,10 @@ function renderSearchHistory() {
       cardUl.appendChild(windSpeedLi);
       cardUl.appendChild(tempLi);
       cardDiv.appendChild(cardUl);
+      // append to forecast section
       fiveDayForecast.appendChild(cardDiv);
     }
   
-    // append
-  
-    // Add content to elements
-  
-    // append to forecast section
   }
   
   // Function to display 5 day forecast.
