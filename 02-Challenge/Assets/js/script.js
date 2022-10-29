@@ -89,14 +89,19 @@ function renderSearchHistory() {
     // variables for data from api
       // temp, windspeed, etc.
       for (var i = 0; i < 5; i++){
-      let temp = [];
-      temp += forecast[i].main.temp;
-      // let windSpeed = 
-      // forecast[i].wind;
-      let humidity = [];
-      humidity += forecast[i].humidity;
+      let tempArr = [];
+      let temp = forecast[i].main.temp;
+      console.log(JSON.stringify(temp));
+      tempArr[i] += JSON.stringify(temp);
+      // let windSpeed = [];
+      // windSpeed[i] += forecast[i].wind.speed;
+      // let humidity = [];
+      // humidity[i] += forecast[i].main.humidity;
       console.log(temp);
+      // console.log(windSpeed);
+      // console.log(humidity);
       }
+      console.log(temp);
     // Create elements for a card
   
     // append
@@ -122,6 +127,8 @@ function renderSearchHistory() {
           renderForecastCard(fiveDayArr);
     }
   
+
+// Passes in the city name and data objects and calls them to other functions
   function renderItems(city, data) {
     renderCurrentWeather(city, data.list[0]);
     console.log(city, data.list);
