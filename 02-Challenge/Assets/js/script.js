@@ -94,8 +94,14 @@ function renderSearchHistory() {
   // Function to display 5 day forecast.
   function renderForecast(dailyForecast) {
   // set up elements for this section
-    
-  // append
+  console.log(dailyForecast[0]);
+  let fiveDayArr = [];
+  // Get data for 5 day forecast, turn each day into strings and put in the array
+  for (var i = 0; i < 5; i++) {
+    let dayData = JSON.stringify(dailyForecast[i]);
+    fiveDayArr += dayData;
+    console.log(fiveDayArr);
+  }
   
   // loop over dailyForecast
   
