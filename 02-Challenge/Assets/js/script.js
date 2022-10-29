@@ -86,20 +86,25 @@ function renderSearchHistory() {
     //   forecastObjs += dayData;
     // }
     // console.log(forecastObjs);
+
     // variables for data from api
       // temp, windspeed, etc.
-      for (var i = 0; i < 5; i++){
       let tempArr = [];
-      let temp = forecast[i].main.temp;
-      console.log(tempArr);
-      tempArr[i] += JSON.stringify(temp);
       let windSpeedArr = [];
+      let humidityArr = [];
+
+      for (var i = 0; i < 5; i++){
+      
+      let temp = forecast[i].main.temp;
+      tempArr.push(JSON.stringify(temp));
+      console.log(tempArr);
+      
       let windSpeed = forecast[i].wind.speed;
       console.log(windSpeedArr);
-      windSpeedArr[i] += JSON.stringify(windSpeed);
-      let humidityArr = [];
+      windSpeedArr.push(JSON.stringify(windSpeed));
+     
       let humidity = forecast[i].main.humidity
-      humidityArr[i] += JSON.stringify(humidity);
+      humidityArr.push(JSON.stringify(humidity));
       console.log(humidityArr);
       // console.log(windSpeed);
       // console.log(humidity);
