@@ -93,8 +93,10 @@ function renderSearchHistory() {
       let temp = forecast[i].main.temp;
       console.log(JSON.stringify(temp));
       tempArr[i] += JSON.stringify(temp);
-      // let windSpeed = [];
-      // windSpeed[i] += forecast[i].wind.speed;
+      let windSpeedArr = [];
+      let windSpeed = forecast[i].wind.speed;
+      console.log(JSON.stringify(windSpeed));
+      windSpeedArr[i] += JSON.stringify(windSpeed);
       // let humidity = [];
       // humidity[i] += forecast[i].main.humidity;
       console.log(temp);
