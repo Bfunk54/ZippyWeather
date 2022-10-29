@@ -117,10 +117,13 @@ function renderSearchHistory() {
       let humidityLi = document.createElement('li');
       let windSpeedLi = document.createElement('li');
       let tempLi = document.createElement('li');
-      humidityLi.appendChild(humidityArr[i]);
+      let humidityNode = document.createTextNode('Humidity: ' + humidityArr[i] + '%');
+      let windSpeedNode = document.createTextNode('Wind Speed: ' + windSpeedArr[i] + ' MPH');
+      let tempNode = document.createTextNode('Temperature: ' + tempArr[i] + '°F');
+      humidityLi.appendChild(humidityNode);
       cardUl.appendChild(humidityLi);
       cardDiv.appendChild(cardUl);
-      
+      fiveDayForecast.appendChild(cardDiv);
     }
   
     // append
