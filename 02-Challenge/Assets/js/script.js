@@ -91,19 +91,19 @@ function renderSearchHistory() {
       for (var i = 0; i < 5; i++){
       let tempArr = [];
       let temp = forecast[i].main.temp;
-      console.log(JSON.stringify(temp));
+      console.log(tempArr);
       tempArr[i] += JSON.stringify(temp);
       let windSpeedArr = [];
       let windSpeed = forecast[i].wind.speed;
-      console.log(JSON.stringify(windSpeed));
+      console.log(windSpeedArr);
       windSpeedArr[i] += JSON.stringify(windSpeed);
-      // let humidity = [];
-      // humidity[i] += forecast[i].main.humidity;
-      console.log(temp);
+      let humidityArr = [];
+      let humidity = forecast[i].main.humidity
+      humidityArr[i] += JSON.stringify(humidity);
+      console.log(humidityArr);
       // console.log(windSpeed);
       // console.log(humidity);
       }
-      console.log(temp);
     // Create elements for a card
   
     // append
