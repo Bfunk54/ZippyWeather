@@ -26,8 +26,9 @@ function renderSearchHistory(search) {
     // loop through the history array creating a button for each item
     for (var i = 0; i < searchArr.length; i++){
       let historyButton = document.createElement('button');
-      
-    
+      console.log(searchArr[i]);
+      historyButton.textContent = searchArr[i];
+      searchHistory.appendChild(historyButton);
     }
       // append to the search history container
   }
@@ -98,6 +99,9 @@ function renderSearchHistory(search) {
     //   forecastObjs += dayData;
     // }
     // console.log(forecastObjs);
+
+    // Clear 5-day forecast container
+    fiveDayForecast.innerHTML = '';
 
     // variables for data from api
       // temp, windspeed, etc.
