@@ -28,9 +28,10 @@ function renderSearchHistory(search) {
       let historyButton = document.createElement('button');
       console.log(searchArr[i]);
       historyButton.textContent = searchArr[i];
+      // append to the search history container
       searchHistory.appendChild(historyButton);
     }
-      // append to the search history container
+      
   }
   
     let searchArr = [];
@@ -68,15 +69,22 @@ function renderSearchHistory(search) {
       let windSpeed = weather.wind.speed;
       let humidity = weather.main.humidity;
       console.log(temp, windSpeed, humidity);
+      var date = new Date(weather.dt_txt);
+
+      var day = date.getDate();
+      var month = date.getMonth();
+      var year = date.getFullYear();
+
+      var realDate = `${month + 1}/${day}/${year}`;
   
   
     // document.create the elements you'll want to put this information in  
       let dataUl = document.createElement('ul');
   
     // append those elements somewhere
-      dataUl.innerHTML += '<li> Temperature: ' + temp + '</li>';
-      dataUl.innerHTML += '<li> Wind Speed: ' + windSpeed + '</li>'
-      dataUl.innerHTML += '<li> Humidity: ' + humidity + '</li>';
+      dataUl.innerHTML += '<li> Temperature: ' + (((temp - 273.15) * 1.8 + 32).toFixed(2)) + ' °F</li>';
+      dataUl.innerHTML += '<li> Wind Speed: ' + windSpeed + ' MPH</li>'
+      dataUl.innerHTML += '<li> Humidity: ' + humidity + '%</li>';
   
     // give them their appropriate content
       console.log(todaysWeather);
@@ -86,7 +94,11 @@ function renderSearchHistory(search) {
       // city.innerHTML;
       //Clear the last city and create a text node with the city name and put that on the page
       cityName.innerHTML = '';
+      
       cityName.appendChild(document.createTextNode(city));
+      cityName.innerHTML += ` ${realDate}`
+      
+
   }
   
   // Function to display a FORECAST card given an object (from our renderForecast function) from open weather api
@@ -108,11 +120,13 @@ function renderSearchHistory(search) {
       let tempArr = [];
       let windSpeedArr = [];
       let humidityArr = [];
+      let dateArr = [];
+      let imgArr = [];
 
       for (var i = 0; i < 5; i++){
       
       let temp = forecast[i].main.temp;
-      tempArr.push(JSON.stringify(temp));
+      tempArr.push(((temp - 273.15) * 1.8 + 32).toFixed(2));
       console.log(tempArr);
       
       let windSpeed = forecast[i].wind.speed;
@@ -122,7 +136,26 @@ function renderSearchHistory(search) {
       let humidity = forecast[i].main.humidity
       humidityArr.push(JSON.stringify(humidity));
       console.log(humidityArr);
-      // console.log(windSpeed);
+
+      let imgId = forecast[i].weather[0].icon;
+      console.log(imgId);
+
+      let date = new Date(forecast[i].dt_txt);
+
+      let day = date.getDate();
+      let month = date.getMonth();
+      let year = date.getFullYear();
+
+      let realDate = `${month + 1}/${day}/${year}`;
+      dateArr.push(realDate);
+
+      let imgUrl = "https://openweathermap.org/img/wn/" + imgId + "@2x.png";
+
+      let weatherImg = document.createElement('img');
+      weatherImg.src = imgUrl;
+      console.log(JSON.stringify(weatherImg));
+      imgArr.push(weatherImg)
+      console.log(imgArr);
       // console.log(humidity);
       }
     // Create elements for a card
@@ -133,17 +166,23 @@ function renderSearchHistory(search) {
       let humidityLi = document.createElement('li');
       let windSpeedLi = document.createElement('li');
       let tempLi = document.createElement('li');
+      let dateText = document.createElement('h4');
+      let dateNode = document.createTextNode(dateArr[i])
       let humidityNode = document.createTextNode('Humidity: ' + humidityArr[i] + '%');
       let windSpeedNode = document.createTextNode('Wind Speed: ' + windSpeedArr[i] + ' MPH');
-      let tempNode = document.createTextNode('Temperature: ' + tempArr[i] + '°F');
-
+      let tempNode = document.createTextNode('Temperature: ' + tempArr[i] + ' °F');
+      
       // append all the elements
       humidityLi.appendChild(humidityNode);
       windSpeedLi.appendChild(windSpeedNode);
       tempLi.appendChild(tempNode);
+      dateText.appendChild(dateNode);
+      dateText.appendChild(imgArr[i]);
+      cardUl.appendChild(dateText);
       cardUl.appendChild(humidityLi);
       cardUl.appendChild(windSpeedLi);
       cardUl.appendChild(tempLi);
+      cardUl.className = 'd-inline';
       cardDiv.appendChild(cardUl);
       // append to forecast section
       fiveDayForecast.appendChild(cardDiv);
