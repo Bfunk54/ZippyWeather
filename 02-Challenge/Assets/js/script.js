@@ -135,6 +135,7 @@ function renderSearchHistory(search) {
 
       for (var i = 0; i < 5; i++){
       
+      console.log(forecast);
       let temp = forecast[i].main.temp;
       tempArr.push(((temp - 273.15) * 1.8 + 32).toFixed(2));
       console.log(tempArr);
@@ -206,7 +207,7 @@ function renderSearchHistory(search) {
   console.log(dailyForecast[0]);
   let fiveDayArr = [];
   // Get data for 5 day forecast, turn each day into strings and put in the array
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i <= 39; i = i + 8) {
     console.log(dailyForecast[i]);
     fiveDayArr.push(dailyForecast[i]);
     console.log(fiveDayArr);
