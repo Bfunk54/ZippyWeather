@@ -76,6 +76,14 @@ function renderSearchHistory(search) {
       var year = date.getFullYear();
 
       var realDate = `${month + 1}/${day}/${year}`;
+
+      let imgId = weather.weather[0].icon;
+
+      let imgUrl = "https://openweathermap.org/img/wn/" + imgId + "@2x.png";
+
+      let weatherImg = document.createElement('img');
+      weatherImg.src = imgUrl;
+      console.log(weatherImg);
   
   
     // document.create the elements you'll want to put this information in  
@@ -96,7 +104,9 @@ function renderSearchHistory(search) {
       cityName.innerHTML = '';
       
       cityName.appendChild(document.createTextNode(city));
-      cityName.innerHTML += ` ${realDate}`
+      cityName.innerHTML += ` ${realDate} `
+      cityName.appendChild(weatherImg)
+
       
 
   }
