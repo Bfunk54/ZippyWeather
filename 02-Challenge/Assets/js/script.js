@@ -192,8 +192,8 @@ function renderSearchHistory(search) {
       cardUl.appendChild(humidityLi);
       cardUl.appendChild(windSpeedLi);
       cardUl.appendChild(tempLi);
-      cardUl.className = 'd-inline';
       cardDiv.appendChild(cardUl);
+      cardDiv.className = 'cards col';
       // append to forecast section
       fiveDayForecast.appendChild(cardDiv);
     }

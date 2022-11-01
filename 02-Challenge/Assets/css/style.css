@@ -36,3 +36,7 @@
 .container {
     margin: 0;
 }
+
+.cards {
+    background-color: aquamarine;
+}
