@@ -1,10 +1,5 @@
-/* .searchForm {
-    display: flex;
-    justify-content: left;
-    margin-left: 0;
-} */
-.actualForm {
-
+.hide {
+    display: none !important;
 }
 
 .searchTitle {

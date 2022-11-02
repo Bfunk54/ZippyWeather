@@ -27,6 +27,7 @@ function renderSearchHistory(search) {
     for (var i = 0; i < searchArr.length; i++){
       let historyButton = document.createElement('button');
       console.log(searchArr[i]);
+      historyButton.classList.add('btn', 'btn-outline-primary');
       historyButton.textContent = searchArr[i];
       // append to the search history container
       searchHistory.appendChild(historyButton);
@@ -107,20 +108,13 @@ function renderSearchHistory(search) {
       cityName.innerHTML += ` ${realDate} `
       cityName.appendChild(weatherImg)
 
-      
+      todaysWeather.classList.remove('hide');
 
   }
   
   // Function to display a FORECAST card given an object (from our renderForecast function) from open weather api
   // daily forecast.
   function renderForecastCard(forecast) {
-    // Parse data back into json to make it easier to grab data points
-    // let forecastObjs = [];
-    // for (var i = 0; i < 5; i++) {
-    //   let dayData = JSON.parse(forecast[i]);
-    //   forecastObjs += dayData;
-    // }
-    // console.log(forecastObjs);
 
     // Clear 5-day forecast container
     fiveDayForecast.innerHTML = '';
@@ -198,6 +192,7 @@ function renderSearchHistory(search) {
       // append to forecast section
       fiveDayForecast.appendChild(cardDiv);
     }
+    fiveDayForecast.classList.remove('hide');
   
   }
   
