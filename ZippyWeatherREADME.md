@@ -1,4 +1,3 @@
-<a name="readme-top"></a>
 # [![MIT License](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
 
 # Zippy Weather
