@@ -1,3 +1,4 @@
+<a name="readme-top"></a>
 # [![MIT License](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
 
 # Zippy Weather
@@ -36,6 +37,11 @@ Bfunk54
 
 ## Tests
 To test, use the usage information and repeat this a few times with a few different cities. With any luck, they'll all be pulled up correctly and show the correct data!
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Screenshots
+![](./assets/images/Screen%20Shot%202022-11-02%20at%2012.49.30%20PM.png)
+![](./assets/images/Screen%20Shot%202022-11-02%20at%2012.49.41%20PM.png)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Questions
