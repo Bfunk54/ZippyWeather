@@ -7,6 +7,7 @@ const searchInput = document.getElementById('searchInput');
 const todaysWeather = document.getElementById('todaysWeather');
 const fiveDayForecast = document.getElementById('5dayForecast');
 const searchHistory = document.getElementById('searchHistory');
+const historyButton = document.getElementById('historyButton');
 const searchButton = document.getElementById('searchButton');
 const cityName = document.getElementById('theNewCity');
 
@@ -20,6 +21,7 @@ function renderSearchHistory(search) {
       console.log(searchArr[i]);
       historyButton.classList.add('btn', 'btn-outline-primary');
       historyButton.textContent = searchArr[i];
+      historyButton.setAttribute('id','historyButton');
       // append to the search history container
       searchHistory.appendChild(historyButton);
     }
@@ -239,3 +241,7 @@ searchButton.addEventListener('click', function(e){
     handleSearchFormSubmit(searchInput)
 })
   // click event to run the handleSearchHistoryClick
+historyButton.addEventListener('click', function(e){
+    e.preventDefault();
+    handleSearchHistoryClick(historyButton.textContent);
+})
