@@ -54,7 +54,7 @@ function renderSearchHistory(search) {
       let humidity = weather.main.humidity;
 
       let date = new Date(weather.dt_txt);
-      const instant = date.toLocaleDateString().replaceAll('/', "-");
+      const instant = date.toISOString().substring(0, 10).replaceAll('/', "-");
 
       let imgId = weather.weather[0].icon;
 
@@ -80,7 +80,7 @@ function renderSearchHistory(search) {
       cityName.innerHTML = '';
       
       cityName.appendChild(document.createTextNode(city + ' '));
-      cityName.innerHTML += '<br>(' + JSON.stringify(instant).replaceAll('"', "") + ')';
+      cityName.innerText += '\n(' + instant + ')';
       cityName.appendChild(weatherImg);
 
       todaysWeather.classList.remove('hide');
@@ -115,8 +115,8 @@ function renderSearchHistory(search) {
       let imgId = forecast[i].weather[0].icon;
 
       let date = new Date(forecast[i].dt_txt);
-      const instant = date.toLocaleDateString().replaceAll('/', "-");
-      dateArr.push(JSON.stringify(instant).replaceAll('"', ""));
+      const instant = date.toISOString().substring(0, 10).replaceAll('/', "-");
+      dateArr.push(instant);
 
       let imgUrl = "https://openweathermap.org/img/wn/" + imgId + "@2x.png";
 
