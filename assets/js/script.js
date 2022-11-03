@@ -7,39 +7,64 @@ const searchInput = document.getElementById('searchInput');
 const todaysWeather = document.getElementById('todaysWeather');
 const fiveDayForecast = document.getElementById('5dayForecast');
 const searchHistory = document.getElementById('searchHistory');
-const historyButton = document.getElementById('historyButton');
+const historyButton = document.querySelectorAll('historyButton');
 const searchButton = document.getElementById('searchButton');
 const cityName = document.getElementById('theNewCity');
 
 // Function to display the search history list.
-function renderSearchHistory(search) {
-    // loop through the history array creating a button for each item
-    for (var i = 0; i < searchArr.length; i++){
-      let historyButton = document.createElement('button');
-      console.log(searchArr[i]);
-      historyButton.classList.add('btn', 'btn-outline-primary');
-      historyButton.textContent = searchArr[i];
-      historyButton.setAttribute('id','historyButton');
-      // append to the search history container
-      searchHistory.appendChild(historyButton);
+function renderSearchHistory() {
+  for (let i=0; i < localStorage.length; i++) {
+    historyArr = localStorage.getItem('searchHistory') || '[]';
     }
+    console.log(historyArr[0]);
+    // loop through the history array creating a button for each item
+    // for (let i=0; i < historyArr.length; i++) {
+      // console.log(historyArr[i]);
+      let newHistoryButton = document.createElement('button');
+      // console.log(searchArr[i]);
+      newHistoryButton.classList.add('btn', 'btn-outline-primary', 'historyButton');
+      newHistoryButton.textContent = historyArr;
+      newHistoryButton.setAttribute('id','historyButton');
+      searchHistory.appendChild(newHistoryButton);
+        
+        // append to the search history container
+        // searchHistory.appendChild(historyButton);
+    
   }
+
     let searchArr = [];
 
   // Function to update history in local storage then updates displayed history.
   function appendToHistory(search) {
-    // push search term into search history array
-    let newSearch = JSON.stringify(search);
-    // set search history array to local storage
-    localStorage.setItem('searchHistory', search)
-    initSearchHistory();
+    console.log(search);
+    let historyArr = [];
+   let historyStr = localStorage.getItem('searchHistory');
+  //  JSON.parse(historyStr);
+  //  JSON.parse(historyStr);
+   console.log(historyStr);
+   historyArr.push(historyStr);
+    if (historyArr.includes(historyStr)) {
+    }
+    else {
+      historyArr.push(JSON.parse(historyStr));
+    }
+    // set search history to local storage
+    let searchObj = localStorage.setItem('searchHistory', JSON.stringify(historyArr));
+  
   }
   
   // Function to get search history from local storage
-  function initSearchHistory() {
+  function initSearchHistory(search) {
+    // set search history to local storage
+    for (let i=0; i < localStorage.length; i++) {
+    historyArr = localStorage.getItem('searchHistory') || '[]';
+    }
+    if (historyArr.includes(search)) {
+    }
+    else {
+      localStorage.setItem('searchHistory', search);
+    }
      // get search history item from local storage
-     let historyStr = localStorage.getItem('searchHistory');
-     searchArr.push(historyStr);
     // set search history array equal to what you got from local storage
     renderSearchHistory();
   }
@@ -191,6 +216,7 @@ function renderSearchHistory(search) {
         const response = await fetch(apiURL);
         const data = await response.json();
         renderItems(name, data);
+        console.log(data);
   }
   
   async function fetchCoords(search) {
@@ -199,7 +225,7 @@ function renderSearchHistory(search) {
         const response = await fetch(weathUrl);
         const data = await response.json();
     // fetch with your url, .then that returns the response in json, .then that does 2 things - calls appendToHistory(search), calls fetchWeather(the data)
-        appendToHistory(search)
+        // appendToHistory(search)
         fetchWeather(data)
   }
   
@@ -212,6 +238,7 @@ function renderSearchHistory(search) {
     // e.preventDefault();
     var search = searchInput.value.trim();
     fetchCoords(search);
+    initSearchHistory(search);
     searchInput.value = '';
   }
   
@@ -221,15 +248,21 @@ function renderSearchHistory(search) {
     fetchCoords(search);
   }
   
-  initSearchHistory();
+
   // click event to run the handleFormSubmit 
 searchButton.addEventListener('click', function(e){
     e.preventDefault();
+    console.log(historyButton);
+
     handleSearchFormSubmit(searchInput)
 })
+
   // click event to run the handleSearchHistoryClick
 // if (historyButton){
-historyButton?.addEventListener('click', function(e){
-    e.preventDefault();
-    handleSearchHistoryClick(historyButton.textContent);
-})
+//   historyButton.forEach(function (checkDate) {
+
+//   checkDate.addEventListener('click', function(e){
+//     e.preventDefault();
+//     handleSearchHistoryClick(historyButton.textContent);
+// })
+// })
