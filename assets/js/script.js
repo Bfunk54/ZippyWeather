@@ -13,8 +13,6 @@ const cityName = document.getElementById('theNewCity');
 
 // Function to display the search history list.
 function renderSearchHistory(search) {
-    // empty the search history container\
-    searchHistory.innerHTML = '';
     // loop through the history array creating a button for each item
     for (var i = 0; i < searchArr.length; i++){
       let historyButton = document.createElement('button');
@@ -54,18 +52,19 @@ function renderSearchHistory(search) {
   function renderCurrentWeather(city, weather) {
     // Store response data from our fetch request in variables
       // temperature, wind speed, etc.
+  
       let temp = weather.main.temp;
       let windSpeed = weather.wind.speed;
       let humidity = weather.main.humidity;
 
-      var date = new Date(weather.dt_txt);
+      let date = new Date(weather.dt_txt);
 
-      var day = date.getDate();
-      var month = date.getMonth();
-      var year = date.getFullYear();
+      let day = date.getDate();
+      let month = date.getMonth();
+      let year = date.getFullYear();
 
-      var realDate = `${month + 1}/${day}/${year}`;
-
+      let realDate = ` ${month + 1}/${day}/${year}`;
+      JSON.stringify(realDate);
       let imgId = weather.weather[0].icon;
 
       let imgUrl = "https://openweathermap.org/img/wn/" + imgId + "@2x.png";
@@ -75,21 +74,23 @@ function renderSearchHistory(search) {
 
     // document.create the elements you'll want to put this information in  
       let dataUl = document.createElement('ul');
-  
     // append those elements somewhere
       dataUl.innerHTML += '<li> Temperature: ' + (((temp - 273.15) * 1.8 + 32).toFixed(2)) + ' °F</li>';
       dataUl.innerHTML += '<li> Wind Speed: ' + windSpeed + ' MPH</li>'
       dataUl.innerHTML += '<li> Humidity: ' + humidity + '%</li>';
-  
+      dataUl.classList.add('dataUl')
     // give them their appropriate content
+     
       todaysWeather.appendChild(dataUl);
+      const oneDataUl = document.querySelectorAll('.dataUl');
+      oneDataUl[1]? oneDataUl[1].parentNode.removeChild(oneDataUl[1]) : console.log('didnt remove div' + oneDataUl);
 
       //Clear the last city and create a text node with the city name and put that on the page
       cityName.innerHTML = '';
       
       cityName.appendChild(document.createTextNode(city));
-      cityName.innerHTML += ` ${realDate} `
-      cityName.appendChild(weatherImg)
+      cityName.innerHTML += realDate;
+      cityName.appendChild(weatherImg);
 
       todaysWeather.classList.remove('hide');
   }
@@ -129,6 +130,7 @@ function renderSearchHistory(search) {
       let year = date.getFullYear();
 
       let realDate = `${month + 1}/${day}/${year}`;
+      JSON.stringify(realDate);
       dateArr.push(realDate);
 
       let imgUrl = "https://openweathermap.org/img/wn/" + imgId + "@2x.png";
@@ -241,7 +243,8 @@ searchButton.addEventListener('click', function(e){
     handleSearchFormSubmit(searchInput)
 })
   // click event to run the handleSearchHistoryClick
-historyButton.addEventListener('click', function(e){
+// if (historyButton){
+historyButton?.addEventListener('click', function(e){
     e.preventDefault();
     handleSearchHistoryClick(historyButton.textContent);
 })
