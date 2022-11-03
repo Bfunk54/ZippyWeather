@@ -29,9 +29,7 @@ function renderSearchHistory(search) {
   // Function to update history in local storage then updates displayed history.
   function appendToHistory(search) {
     // push search term into search history array
-    console.log(search);
     let newSearch = JSON.stringify(search);
-    console.log(search);
     // set search history array to local storage
     localStorage.setItem('searchHistory', search)
     initSearchHistory();
@@ -41,9 +39,7 @@ function renderSearchHistory(search) {
   function initSearchHistory() {
      // get search history item from local storage
      let historyStr = localStorage.getItem('searchHistory');
-     console.log(historyStr);
      searchArr.push(historyStr);
-     console.log(searchArr);
     // set search history array equal to what you got from local storage
     renderSearchHistory();
   }
@@ -58,6 +54,7 @@ function renderSearchHistory(search) {
       let humidity = weather.main.humidity;
 
       let date = new Date(weather.dt_txt);
+      const instant = date.toLocaleDateString().replaceAll('/', "-");
 
       let imgId = weather.weather[0].icon;
 
@@ -83,7 +80,7 @@ function renderSearchHistory(search) {
       cityName.innerHTML = '';
       
       cityName.appendChild(document.createTextNode(city + ' '));
-      cityName.innerHTML += '(' + date.toLocaleDateString() + ')';
+      cityName.innerHTML += '<br>(' + instant + ')';
       cityName.appendChild(weatherImg);
 
       todaysWeather.classList.remove('hide');
@@ -118,7 +115,8 @@ function renderSearchHistory(search) {
       let imgId = forecast[i].weather[0].icon;
 
       let date = new Date(forecast[i].dt_txt);
-      dateArr.push(date.toLocaleDateString());
+      const instant = date.toLocaleDateString().replaceAll('/', "-");
+      dateArr.push(instant);
 
       let imgUrl = "https://openweathermap.org/img/wn/" + imgId + "@2x.png";
 
