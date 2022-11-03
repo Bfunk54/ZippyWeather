@@ -64,7 +64,10 @@ function renderSearchHistory(search) {
       let year = date.getFullYear();
 
       let realDate = ` ${month + 1}/${day}/${year}`;
-      JSON.stringify(realDate);
+      let realDateStr = JSON.stringify(realDate);
+      let realDateStr1 = realDateStr.replace('"', '');
+      let realDateStr2 = realDateStr1.replace('"', '');
+      console.log(realDateStr2);
       let imgId = weather.weather[0].icon;
 
       let imgUrl = "https://openweathermap.org/img/wn/" + imgId + "@2x.png";
@@ -89,7 +92,7 @@ function renderSearchHistory(search) {
       cityName.innerHTML = '';
       
       cityName.appendChild(document.createTextNode(city));
-      cityName.innerHTML += realDate;
+      cityName.innerHTML += realDateStr2;
       cityName.appendChild(weatherImg);
 
       todaysWeather.classList.remove('hide');
@@ -130,8 +133,10 @@ function renderSearchHistory(search) {
       let year = date.getFullYear();
 
       let realDate = `${month + 1}/${day}/${year}`;
-      JSON.stringify(realDate);
-      dateArr.push(realDate);
+      let realDateStr = JSON.stringify(realDate);
+      let realDateStr1 = realDateStr.replace('"', '');
+      let realDateStr2 = realDateStr1.replace('"', '');
+      dateArr.push(realDateStr2);
 
       let imgUrl = "https://openweathermap.org/img/wn/" + imgId + "@2x.png";
 
