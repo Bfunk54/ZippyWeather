@@ -59,18 +59,6 @@ function renderSearchHistory(search) {
 
       let date = new Date(weather.dt_txt);
 
-      let day = date.getDate();
-      let month = date.getMonth();
-      let year = date.getFullYear();
-      month += 1;
-      JSON.stringify(month);
-      JSON.stringify(day);
-      JSON.stringify(year);
-      let realDate = month + '/' + day + '/' + year;
-      realDate.toString();
-      const instant = new Date(date.replace(" ", "T"))
-      console.log(instant.toLocaleString());
-      // let realDate = ` ${month + 1}/${day}/${year}`;
       let imgId = weather.weather[0].icon;
 
       let imgUrl = "https://openweathermap.org/img/wn/" + imgId + "@2x.png";
@@ -95,7 +83,7 @@ function renderSearchHistory(search) {
       cityName.innerHTML = '';
       
       cityName.appendChild(document.createTextNode(city + ' '));
-      cityName.innerHTML += '(' + instant.toLocaleDateString() + ')';
+      cityName.innerHTML += '(' + date.toLocaleDateString() + ')';
       cityName.appendChild(weatherImg);
 
       todaysWeather.classList.remove('hide');
@@ -130,16 +118,7 @@ function renderSearchHistory(search) {
       let imgId = forecast[i].weather[0].icon;
 
       let date = new Date(forecast[i].dt_txt);
-
-      let day = date.getDate();
-      let month = date.getMonth();
-      let year = date.getFullYear();
-      month += 1;
-      let realDate = month + '/' + day + '/' + year;
-      realDate.toString();
-      const instant = new Date(date.replace(" ", "T"))
-      // let realDate = ` ${month + 1}/${day}/${year}`;
-      dateArr.push(instant.toLocaleDateString());
+      dateArr.push(date.toLocaleDateString());
 
       let imgUrl = "https://openweathermap.org/img/wn/" + imgId + "@2x.png";
 
