@@ -80,7 +80,7 @@ function renderSearchHistory(search) {
       cityName.innerHTML = '';
       
       cityName.appendChild(document.createTextNode(city + ' '));
-      cityName.innerHTML += '<br>(' + instant + ')';
+      cityName.innerHTML += '<br>(' + JSON.stringify(instant).replaceAll('"', "") + ')';
       cityName.appendChild(weatherImg);
 
       todaysWeather.classList.remove('hide');
@@ -116,7 +116,7 @@ function renderSearchHistory(search) {
 
       let date = new Date(forecast[i].dt_txt);
       const instant = date.toLocaleDateString().replaceAll('/', "-");
-      dateArr.push(instant);
+      dateArr.push(JSON.stringify(instant).replaceAll('"', ""));
 
       let imgUrl = "https://openweathermap.org/img/wn/" + imgId + "@2x.png";
 
