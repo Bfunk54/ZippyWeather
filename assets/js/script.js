@@ -68,7 +68,7 @@ function renderSearchHistory(search) {
       JSON.stringify(year);
       let realDate = month + '/' + day + '/' + year;
       realDate.toString();
-      const instant = new Date(realDate.replace(" ", "T"))
+      const instant = new Date(date.replace(" ", "T"))
       console.log(instant.toLocaleString());
       // let realDate = ` ${month + 1}/${day}/${year}`;
       let imgId = weather.weather[0].icon;
@@ -137,7 +137,7 @@ function renderSearchHistory(search) {
       month += 1;
       let realDate = month + '/' + day + '/' + year;
       realDate.toString();
-      const instant = new Date(realDate.replace(" ", "T"))
+      const instant = new Date(date.replace(" ", "T"))
       // let realDate = ` ${month + 1}/${day}/${year}`;
       dateArr.push(instant.toLocaleDateString());
 
