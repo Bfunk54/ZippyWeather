@@ -20,7 +20,7 @@ function renderSearchHistory() {
       let newHistoryButton = document.createElement('button');
       newHistoryButton.classList.add('btn', 'btn-outline-primary', 'historyButton');
       newHistoryButton.textContent = historyArr;
-      newHistoryButton.setAttribute('id','historyButton');
+      newHistoryButton.setAttribute('type','submit');
         // append to the search history container
         searchHistory.appendChild(newHistoryButton);
   }
