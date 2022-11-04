@@ -25,22 +25,6 @@ function renderSearchHistory() {
         // append to the search history container
         searchHistory.appendChild(newHistoryButton);
   }
-    let searchArr = [];
-
-  // Function to update history in local storage then updates displayed history.
-  // function appendToHistory(search) {
-  //   let historyArr = [];
-  //  let historyStr = localStorage.getItem('searchHistory');
-  //  historyArr.push(historyStr);
-  //   if (historyArr.includes(historyStr)) {
-  //   }
-  //   else {
-  //     historyArr.push(JSON.parse(historyStr));
-  //   }
-  //   // set search history to local storage
-  //   let searchObj = localStorage.setItem('searchHistory', JSON.stringify(historyArr));
-  
-  // }
   
   // Function to get search history from local storage
   function initSearchHistory(search) {
@@ -69,7 +53,6 @@ function renderSearchHistory() {
       let humidity = weather.main.humidity;
 
       let date = moment(weather.dt_txt).format('MM-DD-YYYY');
-      // const instant = date.toISOString().substring(0, 10).replaceAll('/', "-");
 
       let imgId = weather.weather[0].icon;
 
@@ -101,15 +84,13 @@ function renderSearchHistory() {
       todaysWeather.classList.remove('hide');
   }
   
-  // Function to display a FORECAST card given an object (from the renderForecast function) from open weather api
-  // daily forecast.
+  // Function to display a FORECAST card given an object (from the renderForecast function) from open weather api daily forecast.
   function renderForecastCard(forecast) {
 
     // Clear 5-day forecast container
     fiveDayForecast.innerHTML = '';
 
-    // variables for data from api
-      // temp, windspeed, etc.
+    // variables for data from api; temp, windspeed, etc.
       let tempArr = [];
       let windSpeedArr = [];
       let humidityArr = [];
@@ -139,8 +120,7 @@ function renderSearchHistory() {
       weatherImg.src = imgUrl;
       imgArr.push(weatherImg)
   }
-    // Create elements for a card
-    
+    // Create elements for a card 
     for (var i = 0; i < 5; i++){
       let cardDiv = document.createElement('div');
       let cardUl = document.createElement('ul');
@@ -170,8 +150,7 @@ function renderSearchHistory() {
     }
     fiveDayForecast.classList.remove('hide');
   
-  }
-  
+  }  
   // Function to display 5 day forecast.
   function renderForecast(dailyForecast) {
   // set up elements for this section
@@ -190,14 +169,12 @@ function renderSearchHistory() {
     renderForecast(data.list);
   }
   
-  // Fetches weather data for given location from the Weather Geolocation
-  // endpoint; then, calls functions to display current and forecast weather data.
+  // Fetches weather data for given location from the Weather Geolocation endpoint; then, calls functions to display current and forecast weather data.
   async function fetchWeather(location) {
-    // varialbles of longitude, latitude, city name - coming from location
+    // variables of longitude, latitude, city name - coming from location
     let long = location.coord.lon;
     let lat = location.coord.lat;
     let name = location.name;
-
     // api url
     let apiKey = 'cc89612e36b533aff0217169aedace13';
     let apiURL = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + long + '&appid=' + apiKey;
@@ -244,6 +221,7 @@ searchHistory.addEventListener("click", function(e) {
   handleSearchHistoryClick((e.target).textContent);
 })
 
+// click event for clearing the search history
 clearSearchButton.addEventListener("click", function(e) {
   e.preventDefault();
   searchHistory.innerHTML = '';
