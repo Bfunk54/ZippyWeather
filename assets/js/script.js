@@ -14,8 +14,10 @@ const cityName = document.getElementById('theNewCity');
 
 // Function to display the search history list.
 function renderSearchHistory() {
+  historyArr = [];
   for (let i=0; i < localStorage.length; i++) {
-    historyArr = localStorage.getItem('searchHistory') || '[]';
+    
+    historyArr.push(localStorage.getItem('searchHistory'));
     }
       let newHistoryButton = document.createElement('button');
       newHistoryButton.classList.add('btn', 'btn-outline-primary', 'historyButton');
@@ -42,9 +44,10 @@ function renderSearchHistory() {
   
   // Function to get search history from local storage
   function initSearchHistory(search) {
+    historyArr = [];
     // set search history to local storage
     for (let i=0; i < localStorage.length; i++) {
-    historyArr = localStorage.getItem('searchHistory') || '[]';
+    historyArr.push(localStorage.getItem('searchHistory'));
     }
     if (historyArr.includes(search)) {
     }
