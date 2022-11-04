@@ -26,19 +26,19 @@ function renderSearchHistory() {
     let searchArr = [];
 
   // Function to update history in local storage then updates displayed history.
-  function appendToHistory(search) {
-    let historyArr = [];
-   let historyStr = localStorage.getItem('searchHistory');
-   historyArr.push(historyStr);
-    if (historyArr.includes(historyStr)) {
-    }
-    else {
-      historyArr.push(JSON.parse(historyStr));
-    }
-    // set search history to local storage
-    let searchObj = localStorage.setItem('searchHistory', JSON.stringify(historyArr));
+  // function appendToHistory(search) {
+  //   let historyArr = [];
+  //  let historyStr = localStorage.getItem('searchHistory');
+  //  historyArr.push(historyStr);
+  //   if (historyArr.includes(historyStr)) {
+  //   }
+  //   else {
+  //     historyArr.push(JSON.parse(historyStr));
+  //   }
+  //   // set search history to local storage
+  //   let searchObj = localStorage.setItem('searchHistory', JSON.stringify(historyArr));
   
-  }
+  // }
   
   // Function to get search history from local storage
   function initSearchHistory(search) {
