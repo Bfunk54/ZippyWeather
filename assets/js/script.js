@@ -7,8 +7,9 @@ const searchInput = document.getElementById('searchInput');
 const todaysWeather = document.getElementById('todaysWeather');
 const fiveDayForecast = document.getElementById('5dayForecast');
 const searchHistory = document.getElementById('searchHistory');
-const historyButton = document.querySelectorAll('historyButton');
+const historyButton = document.querySelectorAll('historyButton') || '[]';
 const searchButton = document.getElementById('searchButton');
+const clearSearchButton = document.getElementById('clearSearchButton');
 const cityName = document.getElementById('theNewCity');
 
 // Function to display the search history list.
@@ -16,32 +17,19 @@ function renderSearchHistory() {
   for (let i=0; i < localStorage.length; i++) {
     historyArr = localStorage.getItem('searchHistory') || '[]';
     }
-    console.log(historyArr[0]);
-    // loop through the history array creating a button for each item
-    // for (let i=0; i < historyArr.length; i++) {
-      // console.log(historyArr[i]);
       let newHistoryButton = document.createElement('button');
-      // console.log(searchArr[i]);
       newHistoryButton.classList.add('btn', 'btn-outline-primary', 'historyButton');
       newHistoryButton.textContent = historyArr;
       newHistoryButton.setAttribute('id','historyButton');
-      searchHistory.appendChild(newHistoryButton);
-        
         // append to the search history container
-        // searchHistory.appendChild(historyButton);
-    
+        searchHistory.appendChild(newHistoryButton);
   }
-
     let searchArr = [];
 
   // Function to update history in local storage then updates displayed history.
   function appendToHistory(search) {
-    console.log(search);
     let historyArr = [];
    let historyStr = localStorage.getItem('searchHistory');
-  //  JSON.parse(historyStr);
-  //  JSON.parse(historyStr);
-   console.log(historyStr);
    historyArr.push(historyStr);
     if (historyArr.includes(historyStr)) {
     }
@@ -140,7 +128,7 @@ function renderSearchHistory() {
       let imgId = forecast[i].weather[0].icon;
 
       let date = moment(forecast[i].dt_txt).format('MM-DD-YYYY');
-      console.log(forecast[i].dt_txt);
+
       dateArr.push(date);
 
       let imgUrl = "https://openweathermap.org/img/wn/" + imgId + "@2x.png";
@@ -185,7 +173,6 @@ function renderSearchHistory() {
   // Function to display 5 day forecast.
   function renderForecast(dailyForecast) {
   // set up elements for this section
-  console.log(dailyForecast[0]);
   let fiveDayArr = [];
   // Get data for 5 day forecast, turn each day into strings and put in the array
   for (var i = 0; i <= 39; i = i + 8) {
@@ -216,7 +203,6 @@ function renderSearchHistory() {
         const response = await fetch(apiURL);
         const data = await response.json();
         renderItems(name, data);
-        console.log(data);
   }
   
   async function fetchCoords(search) {
@@ -224,8 +210,7 @@ function renderSearchHistory() {
     const weathUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + search + '&appid=cc89612e36b533aff0217169aedace13'
         const response = await fetch(weathUrl);
         const data = await response.json();
-    // fetch with your url, .then that returns the response in json, .then that does 2 things - calls appendToHistory(search), calls fetchWeather(the data)
-        // appendToHistory(search)
+    // fetch with your url, .then that returns the response in json, .then that calls fetchWeather(the data)
         fetchWeather(data)
   }
   
@@ -234,35 +219,30 @@ function renderSearchHistory() {
     if (!searchInput.value) {
       return;
     }
-  
-    // e.preventDefault();
     var search = searchInput.value.trim();
     fetchCoords(search);
     initSearchHistory(search);
     searchInput.value = '';
   }
   
-  function handleSearchHistoryClick(e) {
+  function handleSearchHistoryClick(search) {
     // grab whatever city is is they clicked
-    
     fetchCoords(search);
   }
   
-
   // click event to run the handleFormSubmit 
 searchButton.addEventListener('click', function(e){
     e.preventDefault();
-    console.log(historyButton);
-
     handleSearchFormSubmit(searchInput)
 })
 
   // click event to run the handleSearchHistoryClick
-// if (historyButton){
-//   historyButton.forEach(function (checkDate) {
+searchHistory.addEventListener("click", function(e) {
+  e.preventDefault();
+  handleSearchHistoryClick((e.target).textContent);
+})
 
-//   checkDate.addEventListener('click', function(e){
-//     e.preventDefault();
-//     handleSearchHistoryClick(historyButton.textContent);
-// })
-// })
+clearSearchButton.addEventListener("click", function(e) {
+  e.preventDefault();
+  searchHistory.innerHTML = '';
+})
