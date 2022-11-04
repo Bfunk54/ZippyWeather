@@ -53,7 +53,7 @@
     -webkit-text-stroke: .5px blue;
 }
 
-#historyButton {
+.historyButton {
     margin-right: 6px;
 }
 
