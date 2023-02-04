@@ -11,6 +11,7 @@ const historyButton = document.querySelectorAll('historyButton') || '[]';
 const searchButton = document.getElementById('searchButton');
 const clearSearchButton = document.getElementById('clearSearchButton');
 const cityName = document.getElementById('theNewCity');
+const dataUl = document.getElementById('dataUl');
 
 // Function to display the search history list.
 function renderSearchHistory() {
@@ -61,8 +62,8 @@ function renderSearchHistory() {
       let weatherImg = document.createElement('img');
       weatherImg.src = imgUrl;
 
-    // document.create the elements you'll want to put this information in  
-      let dataUl = document.createElement('ul');
+      dataUl.innerHTML = '';
+
     // append those elements somewhere
       dataUl.innerHTML += '<li> Temperature: ' + (((temp - 273.15) * 1.8 + 32).toFixed(2)) + ' °F</li>';
       dataUl.innerHTML += '<li> Wind Speed: ' + windSpeed + ' MPH</li>'
@@ -198,6 +199,7 @@ function renderSearchHistory() {
     if (!searchInput.value) {
       return;
     }
+    // todaysWeather.innerHTML = '';
     var search = searchInput.value.trim();
     fetchCoords(search);
     initSearchHistory(search);
